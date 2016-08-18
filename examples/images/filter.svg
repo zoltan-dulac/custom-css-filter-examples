@@ -1,0 +1,123 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" clip-path="url(#clipper)"  height="0">
+
+  <!-- Make sure you have the height="0" here. -->
+
+  <defs>
+    <clipPath id="clipper">
+      <rect x="vx" y="vy" width="100%" height="100%"></rect>
+    </clipPath>
+    <filter id="filter" x="0" y="0">
+      <!-- COLOR -->
+      <feFlood flood-color="#73DCFF" flood-opacity="0.75" result="COLOR-blu" />
+      <feFlood flood-color="#9673FF" flood-opacity="0.4" result="COLOR-red" />
+      <!-- COLOR END -->
+
+      <!-- Texture -->
+      <feTurbulence baseFrequency=".05" type="fractalNoise" numOctaves="3" seed="0" result="Texture_10" />
+      <feColorMatrix type="matrix"
+      values="0 0 0 0 0,
+      0 0 0 0 0,
+      0 0 0 0 0,
+      0 0 0 -2.1 1.1" in="Texture_10"  result="Texture_20" />
+
+      <feColorMatrix result="Texture_30" type="matrix"
+      values="0 0 0 0 0,
+      0 0 0 0 0,
+      0 0 0 0 0,
+      0 0 0 -1.7 1.8" in="Texture_10" />
+      <!-- Texture -->
+
+      <!-- FILL -->
+      <feOffset dx="-3" dy="4" in="SourceAlpha" result="FILL_10"/>
+      <feDisplacementMap scale="17" in="FILL_10" in2="Texture_10" result="FILL_20" />
+      <feComposite operator="in" in="Texture_30" in2 = "FILL_20" result="FILL_40"/>
+      <feComposite operator="in" in="COLOR-blu" in2="FILL_40" result="FILL_50" />
+      <!-- FILL END-->
+
+      <!-- OUTLINE -->
+      <feMorphology operator="dilate" radius="3" in="SourceAlpha" result="OUTLINE_10" />
+      <feComposite operator="out" in="OUTLINE_10" in2 = "SourceAlpha" result="OUTLINE_20" />
+      <feDisplacementMap scale="7" in="OUTLINE_20" in2="Texture_10" result="OUTLINE_30" />
+      <feComposite operator="arithmetic" k2="-1" k3="1" in="Texture_20" in2="OUTLINE_30" result="OUTLINE_40" />
+      <!-- OUTLINE END-->
+
+      <!-- BEVEL OUTLINE -->
+      <feConvolveMatrix order="8,8" divisor="1"
+        kernelMatrix="1 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 " in="SourceAlpha" result="BEVEL_10" />
+      <feMorphology operator="dilate" radius="2" in="BEVEL_10" result="BEVEL_20" />
+      <feComposite operator="out" in="BEVEL_20" in2="BEVEL_10" result="BEVEL_30"/>
+      <feDisplacementMap scale="7" in="BEVEL_30" in2="Texture_10" result="BEVEL_40" />
+      <feComposite operator="arithmetic" k2="-1" k3="1" in="Texture_20" in2="BEVEL_40" result="BEVEL_50" />
+      <feOffset dx="-7" dy="-7" in="BEVEL_50" result="BEVEL_60"/>
+      <feComposite operator="out" in="BEVEL_60" in2 = "OUTLINE_10" result="BEVEL_70" />
+      <!-- BEVEL OUTLINE END -->
+
+      <!-- BEVEL FILL -->
+      <feOffset dx="-9" dy="-9" in="BEVEL_10" result="BEVEL-FILL_10"/>
+      <feComposite operator="out" in="BEVEL-FILL_10" in2 = "OUTLINE_10" result="BEVEL-FILL_20" />
+      <feDisplacementMap scale="17" in="BEVEL-FILL_20" in2="Texture_10" result="BEVEL-FILL_30" />
+      <feComposite operator="in" in="COLOR-red" in2="BEVEL-FILL_30" result="BEVEL-FILL_50" /> 
+      <!-- BEVEL FILL END-->
+
+      <feMerge  result="merge2">
+       <feMergeNode in="BEVEL-FILL_50" />
+       <feMergeNode in="BEVEL_70" />
+       <feMergeNode in="FILL_50" />
+       <feMergeNode in="OUTLINE_40" />
+      </feMerge>
+    </filter>
+    
+    <filter id="blur" height="116%" width="116%" y="-8%" x="-8%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="15" />
+    </filter>
+    
+    
+    <filter id="splash" width="150%" height="160%" x="-25%" y="-25%">
+      <!-- COLORS -->
+        <feFlood flood-color="#16B5FF" result="COLOR-blue" />‚
+        <feFlood flood-color="#9800FF" result="COLOR-violet" />
+        <feFlood flood-color="#A64DFF" result="COLOR-violet-light" />
+      <!-- COLORS END -->
+
+      <!-- BOTTOM SPLASH -->
+        <feTurbulence baseFrequency="0.05" type="fractalNoise" numOctaves="1" seed="2" result="BOTTOM-SPLASH_10" />
+        <feGaussianBlur stdDeviation="6.5"  in="SourceAlpha" result="BOTTOM-SPLASH_20" />
+        <feDisplacementMap scale="420" in="BOTTOM-SPLASH_20" in2="BOTTOM-SPLASH_10" result="BOTTOM-SPLASH_30"/>
+        <feComposite operator="in" in="COLOR-blue" in2="BOTTOM-SPLASH_30" result="BOTTOM-SPLASH_40" />
+      <!-- BOTTOM END -->
+
+      <!-- MIDDLE SPLASH -->
+        <feTurbulence baseFrequency="0.1" type="fractalNoise" numOctaves="1" seed="1" result="MIDDLE-SPLASH_10" />
+        <feGaussianBlur in="SourceAlpha" stdDeviation="0.1" result="MIDDLE-SPLASH_20" />
+        <feDisplacementMap in="MIDDLE-SPLASH_20" in2="MIDDLE-SPLASH_10" scale="25" result="MIDDLE-SPLASH_30"/>
+        <feComposite in="COLOR-violet-light" in2="MIDDLE-SPLASH_30" operator="in" result="MIDDLE-SPLASH_40" />
+      <!-- MIDDLE END -->
+
+      <!-- TOP SPLASH -->
+        <feTurbulence baseFrequency="0.07" type="fractalNoise" numOctaves="1" seed="1" result="TOP-SPLASH_10" />
+        <feGaussianBlur stdDeviation="3.5" in="SourceAlpha" result="TOP-SPLASH_20" />
+        <feDisplacementMap scale="220" in="TOP-SPLASH_20" in2="TOP-SPLASH_10" result="TOP-SPLASH_30"/>
+        <feComposite operator="in" in="COLOR-violet" in2="TOP-SPLASH_30" result="TOP-SPLASH_40" />
+      <!-- TOP END -->
+
+      <!-- LIGHT EFFECTS -->
+        <feMerge  result="LIGHT-EFFECTS_10">
+          <feMergeNode in="BOTTOM-SPLASH_40" />
+          <feMergeNode in="MIDDLE-SPLASH_40" />
+          <feMergeNode in="TOP-SPLASH_40" />
+        </feMerge>
+        <feColorMatrix type="matrix"
+        values="0 0 0 0 0,
+        0 0 0 0 0,
+        0 0 0 0 0,
+        0 0 0 1 0" in="LIGHT-EFFECTS_10" result="LIGHT-EFFECTS_20" />
+        <feGaussianBlur stdDeviation="2" in="LIGHT-EFFECTS_20" result="LIGHT-EFFECTS_30" />
+        <feSpecularLighting surfaceScale="5" specularConstant=".75" specularExponent="30" lighting-color="#white" in="LIGHT-EFFECTS_30" result="LIGHT-EFFECTS_40">
+          <fePointLight x="-50" y="-100" z="400" />
+        </feSpecularLighting>
+        <feComposite operator="in" in="LIGHT-EFFECTS_40" in2="LIGHT-EFFECTS_20" result="LIGHT-EFFECTS_50"/>
+        <feComposite operator="arithmetic" k1="0" k2="1" k3="1" k4="0" in="LIGHT-EFFECTS_10" in2="LIGHT-EFFECTS_50" result="LIGHT-EFFECTS_60"/>
+      </filter>
+      <!-- LIGHT EFFECTS END -->
+  </defs>
+</svg>

@@ -13,7 +13,7 @@
 		<link rel="shortcut icon" href="/favicon.ico">
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ultra" > 
+		<link rel="stylesheet" href="css/Ultra/stylesheet.css" > 
 		
 		<style>
 			html{

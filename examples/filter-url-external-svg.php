@@ -13,16 +13,18 @@
 		<link rel="shortcut icon" href="/favicon.ico">
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ultra" > 
+		<link rel="stylesheet" href="css/Ultra/stylesheet.css" > 
 		<link rel="stylesheet" href="css/filter-url.css" />
 		
 		<style>
 			:root {
-			  --test-filter: url(#filter);
-				--test-filter2: url(images/filter.svg#filter);
-				--test-blur: url(#blur);
+				/*
+			   * Note that external SVG files cause problems in Safari and Chrome
+			   * (the filter doesn't appear correctly -- i.e. grayscale)
+			   */
+			  
+				--test-scratch-filter2: url(images/filter.svg#scratch-filter);
 				--test-blur2: url(images/filter.svg#blur);
-				--test-splash: url(#splash);
 				--test-splash2: url(images/filter.svg#splash);
 			}
 			
@@ -66,30 +68,16 @@
 			
 			
 			
-			@supports (-webkit-filter: var(--test-filter)) or (filter: var(--test-filter)) {
-				.filtered {
-					-webkit-filter: var(--test-filter);
-					filter: var(--test-filter);
-				}
+			@supports (-webkit-filter: var(--test-scratch-filter)) or (filter: var(--test-scratch-filter)) {
 				
-				.filtered2 {
-					-webkit-filter: var(--test-filter2);
-					filter: var(--test-filter2);
-				}
-				
-				.blur {
-					-webkit-filter: var(--test-blur);
-					filter: var(--test-blur);
+				.scratch-filter2 {
+					-webkit-filter: var(--test-scratch-filter2);
+					filter: var(--test-scratch-filter2);
 				}
 				
 				.blur2 {
 					-webkit-filter: var(--test-blur2);
 					filter: var(--test-blur2);
-				}
-				
-				.splash {
-					-webkit-filter: var(--test-splash);
-					filter: var(--test-splash);
 				}
 				
 				.splash2 {
@@ -107,9 +95,7 @@
 			 */
 			
 			@supports (-webkit-text-size-adjust: none) and (not (-ms-accelerator:true)) and (not (-moz-appearance:none)) { 
-				.filtered, .filtered2,
-				.blur, .blur2,
-				.splash, .splash2 {
+				.filtered {
 					-webkit-filter: none;
 				}
 			}
@@ -131,9 +117,7 @@
 				include 'images/filter.svg';
 			?>
 		
-    <h1 class="filtered">Nat King Cole</h1>
-    
-    <h1 class="filtered2">Nat King Cole</h1>
+    <h1 class="filtered scratch-filter2">Nat King Cole</h1>
     
     <p>The text at the top is rendered using a filter coming from an SVG 
     	embedded in the HTML document.  The second version is rendered using
@@ -143,12 +127,9 @@
     <p>In Safari 9.1, the filtered text doesn't appear unless you reduce the window
     	size to around 504 pixels <strong>and you reload the page (!?!??)</strong></p>
     	
-    <h1 class="blur">Nat King Cole</h1>
+    <h1 class="filtered blur2">Nat King Cole</h1>
     
-    <h1 class="blur2">Nat King Cole</h1>
+    <h1 class="filtered splash2">Nat King Cole</h1>
     
-    <h1 class="splash">Nat King Cole</h1>
-    
-    <h1 class="splash2">Nat King Cole</h1>
 	</body>
 </html>

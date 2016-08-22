@@ -1,0 +1,10 @@
+      :root {
+        /*
+         * Note that external SVG files cause problems in Safari and Chrome
+         * (the filter doesn't appear correctly -- i.e. grayscale)
+         */
+        
+        --test-scratch-filter: url(#scratch-filter);
+        --test-blur: url(#blur);
+        --test-splash: url(#splash);
+      }

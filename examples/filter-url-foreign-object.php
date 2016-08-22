@@ -22,19 +22,15 @@
 		<link rel="stylesheet" href="css/filter-url.css" />
 		
 		<style>
-			:root {
-				/*
-			   * Note that external SVG files cause problems in Safari and Chrome
-			   * (the filter doesn't appear correctly -- i.e. grayscale)
-			   */
-			  
-			  --test-filter: url(#scratch-filter);
-			}
-			
-			*{
-				box-sizing: border-box;
-			}
-			
+			<?php
+				include 'css/embedded-svg.css';
+				include 'css/basic.css';
+				include 'css/px-font-height.css';
+				include 'css/filter.css';
+				include 'css/hover.css';
+				include 'css/fix-retina-bug-ios.css';
+			?>
+		
 			svg {
 				border: solid 1px red;
 				/*
@@ -59,35 +55,8 @@
 				overflow: visible;
 			}
 			
-			svg foreignObject {
-				font-family: 'Ultra', serif;
-				font-size: 50px;
-				line-height: 1.2;
-				margin: 0;
-				padding-left: 0.5em;
-				
-				
-				
-				
-				width: 100vw;
-				
-				overflow: visible;
-				
-			}
-			
-			h1:hover {
-				/* transform: translateZ(0) scale(2); */
-			}
 			
 			
-			
-			@supports (-webkit-filter: var(--test-filter)) or (filter: var(--test-filter)) {
-				.filtered {
-					-webkit-filter: var(--test-filter);
-					filter: var(--test-filter);
-				}
-				
-			}
 			
 			/*
 			 * This solution also works in iOS Safari (Yes!) and has no retina issues
@@ -102,6 +71,8 @@
 		<meta name="twitter:card" content="photo">
 		<meta name="twitter:title" content="Why does the CSS filter that links to an external SVG file become grayscale in Chrome when the exact same SVG code on the HTML file renders correctly?" />
 		<meta name="twitter:image" content="social/filter-url.jpg">
+		
+		<script src="js/filter-url.js"></script>
 
 	</head>
 
@@ -119,7 +90,7 @@
 		-->
 	  <foreignObject  width="100%" height="100%">
 	    <body xmlns="http://www.w3.org/1999/xhtml">
-	      <h1 class="filtered">Nat King Cole</h1>
+	      <h1 class="filtered scratch-filter">Nat King Cole</h1>
 	    </body>
 	  </foreignObject>
 	</svg>

@@ -1,0 +1,8 @@
+    h1{
+        font-size: 100px;
+        /*
+         * You must also put a width to ensure there are no viewport resize
+         * issues in Safari.  Don't use viewport units for mobile.
+         */
+        width: 100vw;
+     }

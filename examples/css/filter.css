@@ -1,0 +1,19 @@
+
+      @supports (-webkit-filter: var(--test-scratch-filter)) or (filter: var(--test-scratch-filter)) {
+        .scratch-filter {
+          -webkit-filter: var(--test-scratch-filter);
+          filter: var(--test-scratch-filter);
+        }
+        
+        
+        .blur {
+          -webkit-filter: var(--test-blur);
+          filter: var(--test-blur);
+        }
+        
+        .splash {
+          -webkit-filter: var(--test-splash);
+          filter: var(--test-splash);
+        }
+        
+      }

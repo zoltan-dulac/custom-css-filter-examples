@@ -1,0 +1,24 @@
+      *{
+        box-sizing: border-box;
+      }
+      
+      
+      h1 {
+        font-family: 'Ultra', serif;
+        
+        display: block;
+        line-height: 1.2;
+        margin: 0;
+        padding-left: 0.5em;
+        
+        
+        
+        /*
+         * This is *so* important -- this will not work in Safari unless you 
+         * put this in.
+         */
+        transform: translateZ(0);
+        
+        
+        
+      }

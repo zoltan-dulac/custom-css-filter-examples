@@ -1,0 +1,12 @@
+        h1 {
+          /*
+           * This works well in Safari -- other browsers are really janky.
+           */
+          transition: transform 0.25s linear;
+        
+        }
+        
+        h1:hover {
+        transform: translateZ(0) scale(2);
+      }
+      

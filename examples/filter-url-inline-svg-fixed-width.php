@@ -17,90 +17,15 @@
 		<link rel="stylesheet" href="css/filter-url.css" />
 		
 		<style>
-			:root {
-				/*
-			   * Note that external SVG files cause problems in Safari and Chrome
-			   * (the filter doesn't appear correctly -- i.e. grayscale)
-			   */
-			  
-			  --test-scratch-filter: url(#scratch-filter);
-				--test-blur: url(#blur);
-				--test-splash: url(#splash);
-			}
-			
-			*{
-				box-sizing: border-box;
-			}
-			
-			
-			h1 {
-				font-family: 'Ultra', serif;
-				font-size: 100px;
-				display: block;
-				line-height: 1.2;
-				margin: 0;
-				padding-left: 0.5em;
-				
-				/*
-				 * This works well in Safari -- other browsers are really janky.
-				 */
-				/* transition: transform 0.25s linear; */
-				
-				
-				/*
-				 * This is *so* important -- this will not work in Safari unless you 
-				 * put this in.
-				 */
-				transform: translateZ(0);
-				
-				/*
-				 * You must also put a width to ensure there are no viewport resize
-				 * issues in Safari.  Don't use viewport units for mobile.
-				 */
-				width: 100vw;
-				
-				
-			}
-			
-			h1:hover {
-				/* transform: translateZ(0) scale(2); */
-			}
-			
-			
-			
-			@supports (-webkit-filter: var(--test-scratch-filter)) or (filter: var(--test-scratch-filter)) {
-				.scratch-filter {
-					-webkit-filter: var(--test-scratch-filter);
-					filter: var(--test-scratch-filter);
-				}
-				
-				
-				.blur {
-					-webkit-filter: var(--test-blur);
-					filter: var(--test-blur);
-				}
-				
-				.splash {
-					-webkit-filter: var(--test-splash);
-					filter: var(--test-splash);
-				}
-				
-			}
-			
-			/*
-			 * iOS really does not like SVG filters in HTML, so we are shutting them
-			 * off here.
-			 * 
-			 * iOS Safari hack from 
-			 * http://browserstrangeness.bitbucket.org/css_hacks.html 
-			 */
-			
-			@supports (-webkit-text-size-adjust: none) and (not (-ms-accelerator:true)) and (not (-moz-appearance:none)) { 
-				.filtered {
-					-webkit-filter: none;
-				}
-			}
-
+			<?php
+				include 'css/embedded-svg.css';
+				include 'css/basic.css';
+				include 'css/px-font-height.css';
+				include 'css/filter.css';
+				include 'css/hover.css';
+				include 'css/turn-off-in-ios.css';
+				include 'css/fix-retina-bug-ios.css';
+			?>
 		</style>
 
 		<meta property="og:title" content="SVG filter with CSS variables example" />

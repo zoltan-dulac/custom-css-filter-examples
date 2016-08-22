@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		
 		<!-- 
-			This is the winner!
+			This is truly cross browser, but takes forever to render in Android Chrome.
 		-->
 
 		<title>SVG filter with CSS variables example</title>
@@ -35,7 +35,11 @@
 				box-sizing: border-box;
 			}
 			
-			svg {
+			svg.filters {
+				position: absolute;
+			}
+			
+			svg.content {
 				border: solid 1px red;
 				/*
 				 * This is *so* important -- this will not work in Safari unless you 
@@ -50,6 +54,7 @@
 				 * mobile.
 				 */
 				width: 100%;
+				height: 100vh;
 				
 				/*
 				 * This must be in place so the HTML text inside the svg is totally 
@@ -59,20 +64,26 @@
 				overflow: visible;
 			}
 			
+			
 			svg foreignObject {
-				font-family: 'Ultra', serif;
-				font-size: 50px;
+				width: 100vw;
+				height: 100vh;
+				
 				line-height: 1.2;
+			}
+				
+			h1 {
+				font-family: 'Ultra', serif;
+				font-size: 25px;
+				
 				margin: 0;
 				padding-left: 0.5em;
-				
-				
-				
-				
-				width: 100vw;
-				
 				overflow: visible;
 				
+			}
+			
+			p {
+				margin-bottom: 1em;
 			}
 			
 			h1:hover {
@@ -109,26 +120,55 @@
 			<?php
 				include 'images/filter.svg';
 			?>
-			
-	<svg width="100%" height="100%">
+		<svg class="content" width="100%" height="100%" >
 		<!-- 
 			Do not use requiredExtensions="http://www.w3.org/1999/xhtml" in the
 			foreignObject element. It messes up Chrome.
 			
 			http://stackoverflow.com/questions/17693278/foreignobject-displayblock-not-working-in-chrome
 		-->
-	  <foreignObject  width="100%" height="100%">
+	  <foreignObject  width="100%" height="100%" >
 	    <body xmlns="http://www.w3.org/1999/xhtml">
 	      <h1 class="filtered">Nat King Cole</h1>
+	      
+	      <p>
+					This is an example of using a SVG filter on HTML elements.  The HTML
+					is surrounded with an SVG <code>foreignElement</code> tag.  This ensures
+					that the filter is applied correctly in both mobile and desktop Safari,
+					which has a lot of issues applying SVG filters on plain HTML elements.
+				</p>
+				
+				<p>
+					This is an example of using a SVG filter on HTML elements.  The HTML
+					is surrounded with an SVG <code>foreignElement</code> tag.  This ensures
+					that the filter is applied correctly in both mobile and desktop Safari,
+					which has a lot of issues applying SVG filters on plain HTML elements.
+				</p>
+				
+				<p>
+					This is an example of using a SVG filter on HTML elements.  The HTML
+					is surrounded with an SVG <code>foreignElement</code> tag.  This ensures
+					that the filter is applied correctly in both mobile and desktop Safari,
+					which has a lot of issues applying SVG filters on plain HTML elements.
+				</p>
+				
+				<p>
+					This is an example of using a SVG filter on HTML elements.  The HTML
+					is surrounded with an SVG <code>foreignElement</code> tag.  This ensures
+					that the filter is applied correctly in both mobile and desktop Safari,
+					which has a lot of issues applying SVG filters on plain HTML elements.
+				</p>
+				
+				<p>
+					This is an example of using a SVG filter on HTML elements.  The HTML
+					is surrounded with an SVG <code>foreignElement</code> tag.  This ensures
+					that the filter is applied correctly in both mobile and desktop Safari,
+					which has a lot of issues applying SVG filters on plain HTML elements.
+				</p>
 	    </body>
 	  </foreignObject>
 	</svg>
 		
-	<p>
-		This is an example of using a SVG filter on HTML elements.  The HTML
-		is surrounded with an SVG <code>foreignElement</code> tag.  This ensures
-		that the filter is applied correctly in both mobile and desktop Safari,
-		which has a lot of issues applying SVG filters on plain HTML elements.
-	</p>
+	
 	</body>
 </html>
